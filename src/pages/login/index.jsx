@@ -4,6 +4,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   Button,
   Card,
@@ -20,25 +22,21 @@ import {
 // import {useNavigate} from 'react-router-dom'
 function Login() {
   const { control, handleSubmit } = useForm();
-
   //button login edirik ApI istek atarken
   const [isLoading, setIsLoading] = useState(false);
-
-// const navigate =useNavigate()
+  const navigate =useNavigate()
 
   const login = async (values) => {
     setIsLoading(true);
     try {
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_APP_BASE_API_URL}login`,
-        values
-      );
-      localStorage.setItem("token", data.data.token);
-      //proses dayananda false edirik
-      //home sehifesine yonlendirir
-      //  navigate()
+      const { data } = await axios.post( "login", values,);
+      localStorage.setItem("token", data.token);
+      toast.success(data.message)
+      // proses dayananda false edirik
+      // home sehifesine yonlendirir
+       navigate('/categories')
     } catch (e) {
-      console.log(e);
+     toast.error(e.response.data.message)
     } finally {
       setIsLoading(false);
     }
