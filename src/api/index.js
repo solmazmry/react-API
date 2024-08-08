@@ -5,9 +5,9 @@ const baseURL = import.meta.env.VITE_APP_BASE_API_URL;
 
 const instance = axios.create({
   baseURL,
-  //   headers: {
-  //     Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //   },
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
 });
 
 instance.interceptors.response.use(

@@ -1,6 +1,6 @@
-import axios from "axios";
-import { useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+
+import { NavLink,} from "react-router-dom";
+// import instance from "../../api";
 
 const CustomNavbar=()=>{
   // const isAuthenticated = window.location.pathname.includes("/profile");
@@ -31,29 +31,26 @@ const links=[
 
 ]
 
-const navigate= useNavigate()
+
 // tokenlerimizi yoxlayiriq 
-const chechAuth =async()=>{
+// const chechAuth =async()=>{
 
-try {
-  await axios.get(`${import.meta.env.VITE_APP_BASE_API_URL}authUser`,{
-    headers:{
-      Authorization:`Bearer ${localStorage.getItem("token")}`
-    }
-  })
-} catch (e) {
-if(e.response.status===401){
-  localStorage.removeItem("token")
-  // login sehifesine yonlendir 
- navigate('/login')
-}
-}
+// try {
+//   await axios.get(`${import.meta.env.VITE_APP_BASE_API_URL}authUser`,{
+//     headers:{
+//       Authorization:`Bearer ${localStorage.getItem("token")}`
+//     }
+//   })
+// } catch (e) {
+//     console.log(e);
+    
+// }
 
 
-}
-useEffect(()=>{
-  chechAuth()
-},[])
+// }
+// useEffect(()=>{
+//   chechAuth()
+// },[])
 
 
     return(

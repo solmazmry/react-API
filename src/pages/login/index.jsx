@@ -30,7 +30,7 @@ function Login() {
     setIsLoading(true);
     try {
       const data = await axios.post("login", values);
-      localStorage.setItem("token", data.token);
+      localStorage.setItem("token", data.data.token);
       toast.success(data.message);
       // proses dayananda false edirik
       // home sehifesine yonlendirir
