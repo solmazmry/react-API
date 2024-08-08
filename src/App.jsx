@@ -10,8 +10,8 @@ import Categories from './pages/Categories'
 import Tags from './pages/Tags'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Layout from './conponents/leyout'
-import Login from './pages/login'
+import Layout from './components/leyout/'
+import Login from './pages/login/index.jsx'
 
 function App() {
  const routes=[

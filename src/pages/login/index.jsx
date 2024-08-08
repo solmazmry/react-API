@@ -1,7 +1,7 @@
 // import React from 'react'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-import axios from "axios";
+import axios from "../../api";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -24,19 +24,20 @@ function Login() {
   const { control, handleSubmit } = useForm();
   //button login edirik ApI istek atarken
   const [isLoading, setIsLoading] = useState(false);
-  const navigate =useNavigate()
+  const navigate = useNavigate();
 
   const login = async (values) => {
     setIsLoading(true);
     try {
-      const { data } = await axios.post( "login", values,);
+      const data = await axios.post("login", values);
       localStorage.setItem("token", data.token);
-      toast.success(data.message)
+      toast.success(data.message);
       // proses dayananda false edirik
       // home sehifesine yonlendirir
-       navigate('/categories')
+      navigate("/categories");
     } catch (e) {
-     toast.error(e.response.data.message)
+      console.error(e.response);
+      toast.error(e.response.data.message);
     } finally {
       setIsLoading(false);
     }
